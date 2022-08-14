@@ -41,6 +41,12 @@ English | [简体中文](README_zh-CN.md)
 
 </div>
 
+### Gigapixel Detection 
+This repository provides support for [PANDA](https://www.gigavision.cn/news/news?nav=DataSet%20Panda&type=nav). We add `multi_patch_inference.py` and `patch_generator.py`.
+New Issue welcomes if you have any questions.
+
+We will release weights of CascadeRCNN FasterRCNN and RetinaNet recently.
+
 ## Introduction
 
 MMDetection is an open source object detection toolbox based on PyTorch. It is
