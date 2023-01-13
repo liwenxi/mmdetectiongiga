@@ -215,8 +215,10 @@ def inference_detector_by_patches(model,
         img = mmcv.imread(img)
 
     height, width = img.shape[:2]
-    windows = slide_window(width, height, [(6144, 3072)], [(6144 - 1000, 3072 - 1000)])
-
+    # windows = slide_window(width, height, [(6144, 3072)], [(6144 - 1000, 3072 - 1000)])
+    # windows = slide_window(width, height, [(4096, 4096)], [(4096 - 1000, 4096 - 1000)])
+    # windows = slide_window(width, height, [(4096, 4096)], [(4096 - 1000, 4096 - 1000)])
+    windows = slide_window(width, height, [(height//13, width//13)], [(height//14, width//14)])
 
     results = []
     start = 0
@@ -318,7 +320,7 @@ def main(args):
     model = init_detector(args.config, args.checkpoint, device=args.device)
     # test a huge image by patches
 
-    root = "/media/wzh/wxli/PANDA/images_test"
+    root = "/home/liwenxi/panda/images_test"
 
     paths = glob.glob(os.path.join(root, '*jpg'))
     paths.sort()
@@ -329,7 +331,8 @@ def main(args):
 
         all_result.append(result)
 
-
+    # with open('output.pkl', 'wb') as f:
+    #     pickle.dump(all_result, f)
 
     with open('./person_bbox_test.json') as f:
         gt = json.load(f)
@@ -345,7 +348,8 @@ def main(args):
 
     paths = glob.glob(os.path.join(root, '*jpg'))
     paths.sort()
-    for img, boxes in zip(paths, all_result):
+
+    for img in tqdm.tqdm(paths):
         name = os.path.basename(img)
         for item in boxes[0]:
             # print(item.shape)

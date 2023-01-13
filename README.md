@@ -45,7 +45,19 @@ English | [简体中文](README_zh-CN.md)
 This repository provides support for [PANDA](https://www.gigavision.cn/news/news?nav=DataSet%20Panda&type=nav). We add `multi_patch_inference.py` and `patch_generator.py`.
 New Issue welcomes if you have any questions.
 
-We will release weights of CascadeRCNN FasterRCNN and RetinaNet recently.
+You can try YOLOX-s by using:
+
+```
+python tools/multi_patch_inference.py configs/yolox/yolox_s_panda.py best_bbox_mAP_epoch_300.pth
+```
+
+The main code for inference is:
+```angular2html
+result = inference_detector_by_patches(model, img, args.patch_sizes,
+                                               args.patch_steps, args.img_ratios,
+                                               args.merge_iou_thr)
+```
+The weight you can download from: [BaiduPan](https://pan.baidu.com/s/1l0equTbz19gdlefhucTeaA?pwd=giga) (passwd :giga)
 
 ## Introduction
 
